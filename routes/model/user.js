@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const bcrypt = require ("bcrypt");
+const SALT_FACTOR=10;
 
 const userSchema = new Schema({
     username: {
@@ -14,6 +16,8 @@ const userSchema = new Schema({
     }, 
 },
 { timestamps: true});
+
+userSchema.pre('save' )
     
    
 module.exports = mongoose.model("User", userSchema);

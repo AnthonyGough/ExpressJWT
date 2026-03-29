@@ -1,0 +1,8 @@
+HTTP Verb: GET=== URL: /=== Status: 304 
+Req _ Res:- -Res Time: 142.903 ms 
+HTTP Verb: GET=== URL: /stylesheets/style.css=== Status: 304 
+Req _ Res:- -Res Time: 1.459 ms 
+HTTP Verb: GET=== URL: /=== Status: 304 
+Req _ Res:- -Res Time: 144.395 ms 
+HTTP Verb: GET=== URL: /stylesheets/style.css=== Status: 304 
+Req _ Res:- -Res Time: 1.787 ms 
