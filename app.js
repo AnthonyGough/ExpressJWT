@@ -1,6 +1,6 @@
   const createError = require('http-errors');
   const express = require('express');
-  const mongoose = require("mongoose");
+  const connectDB = require('./db');
   const cors = require("cors");
   const rateLimit = require('express-rate-limit');
   const fs=require("fs");
@@ -13,18 +13,7 @@
   const usersRouter = require('./routes/users');
 
   const app = express();
-  const mongoDB = async () => {  
-    await mongoose.connect("mongodb://localhost:27017/jwttutorial");
-  };
-   
-  mongoDB().catch(error => {
-    console.error("Error connecting to database", error);
-});
-
-mongoose.connection.on('connected', () => {
-  console.log('Connection Established to database');
-});
-
+  
 const logFile = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
 // view engine setup
@@ -84,9 +73,10 @@ app.use(function(err, req, res, next) {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
 });
-
 
 module.exports = app;
